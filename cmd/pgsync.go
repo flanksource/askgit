@@ -6,6 +6,7 @@ import (
 	"errors"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/askgitdev/askgit/extensions"
 	"github.com/askgitdev/askgit/extensions/options"
@@ -42,8 +43,15 @@ var pgsyncCmd = &cobra.Command{
 			),
 		)
 
+		var schemaName string
 		tableName := args[0]
 		query := args[1]
+
+		if strings.Contains(tableName, ".") {
+			s := strings.SplitN(tableName, ".", 2)
+			schemaName = s[0]
+			tableName = s[1]
+		}
 
 		var postgres *sql.DB
 		var askgit *sql.DB
@@ -74,11 +82,12 @@ var pgsyncCmd = &cobra.Command{
 		defer cancel()
 
 		options := &pgsync.SyncOptions{
-			Postgres:  postgres,
-			AskGit:    askgit,
-			TableName: tableName,
-			Query:     query,
-			Logger:    logger,
+			Postgres:   postgres,
+			AskGit:     askgit,
+			SchemaName: schemaName,
+			TableName:  tableName,
+			Query:      query,
+			Logger:     logger,
 		}
 
 		err = pgsync.Sync(ctx, options)
