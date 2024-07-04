@@ -35,15 +35,13 @@ jobs:
         run: make libgit2
 
       - name: Build
-        run: make
-
-      - name: Compress
-        run: tar -czvf mergestat.tar.gz -C .build/ .
+        run: make release
 
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: mergestat.tar.gz
-          asset_name: ${{ matrix.asset_name }}.tar.gz
+          file: ./.release/*
           tag: ${{ github.ref }}
+          overwrite: true
+          file_glob: true
