@@ -1,3 +1,5 @@
+NAME=askgit
+
 .PHONY: clean update vet test lint lint-ci test-cover bench
 
 # default task invoked while running make
@@ -64,6 +66,19 @@ pkg/sqlite/sqlite3.c:
 clean:
 	$(call log, $(YELLOW), "nuking .build/")
 	@-rm -rf .build/
+
+.PHONY: linux
+linux:
+	GOOS=linux GOARCH=amd64 go build -o ./.bin/$(NAME)_linux_amd64 $(LD_FLAGS) mergestat.go
+	GOOS=linux GOARCH=arm64 go build -o ./.bin/$(NAME)_linux_arm64 $(LD_FLAGS) mergestat.go
+
+.PHONY: binaries
+binaries: linux
+
+.PHONY: release
+release: binaries
+	mkdir -p .release
+	cp .bin/askgit* .release/
 
 # ========================================
 # target for common golang tasks
