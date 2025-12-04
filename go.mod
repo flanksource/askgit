@@ -1,6 +1,6 @@
 module github.com/mergestat/mergestat-lite
 
-go 1.19
+go 1.24.0
 
 require (
 	github.com/BurntSushi/toml v1.2.1
@@ -27,10 +27,10 @@ require (
 	github.com/shurcooL/graphql v0.0.0-20220606043923-3cf50f8a0a29
 	github.com/spf13/cobra v1.6.1
 	go.riyazali.net/sqlite v0.0.0-20221017074244-77a6464e0c2a
-	golang.org/x/mod v0.9.0
+	golang.org/x/mod v0.29.0
 	golang.org/x/oauth2 v0.4.0
-	golang.org/x/term v0.9.0
-	golang.org/x/text v0.8.0
+	golang.org/x/term v0.37.0
+	golang.org/x/text v0.31.0
 	golang.org/x/time v0.3.0
 )
 
@@ -73,11 +73,11 @@ require (
 	github.com/spf13/pflag v1.0.5 // indirect
 	github.com/xanzy/ssh-agent v0.3.3 // indirect
 	go.mongodb.org/mongo-driver v1.11.1 // indirect
-	golang.org/x/crypto v0.5.0 // indirect
-	golang.org/x/net v0.7.0 // indirect
-	golang.org/x/sync v0.1.0 // indirect
-	golang.org/x/sys v0.9.0 // indirect
-	golang.org/x/tools v0.6.0 // indirect
+	golang.org/x/crypto v0.45.0 // indirect
+	golang.org/x/net v0.47.0 // indirect
+	golang.org/x/sync v0.18.0 // indirect
+	golang.org/x/sys v0.38.0 // indirect
+	golang.org/x/tools v0.38.0 // indirect
 	google.golang.org/appengine v1.6.7 // indirect
 	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
